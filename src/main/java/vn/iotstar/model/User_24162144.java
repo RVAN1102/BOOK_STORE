@@ -98,6 +98,10 @@ public class User_24162144 implements Serializable {
         this.is_admin = is_admin;
     }
 
+    public boolean is_admin() {
+        return is_admin;
+    }
+
     // Getter/setter tương thích với biểu thức EL ${sessionScope.account.isAdmin}
     public boolean isAdmin() {
         return is_admin;
