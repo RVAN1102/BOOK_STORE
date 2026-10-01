@@ -1,0 +1,28 @@
+# ==========================================
+# IDE Configuration Files (Eclipse / STS)
+# ==========================================
+.settings/
+.classpath
+.project
+.factorypath
+
+# ==========================================
+# Build and Output Folders
+# ==========================================
+target/
+
+# ==========================================
+# Local Cache & Tool Context
+# ==========================================
+.agents/
+.gemini/
+skills/
+.planning/
+
+# ==========================================
+# Documentation & Reports (Zero Non-Code Files)
+# ==========================================
+*.md
+*.docx
+*.pdf
+*.txt
