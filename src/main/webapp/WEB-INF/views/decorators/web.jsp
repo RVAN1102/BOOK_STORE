@@ -69,6 +69,16 @@
                     </ul>
 
                     <ul class="navbar-nav ms-auto align-items-center">
+                        <!-- NÚT GIỎ HÀNG -->
+                        <li class="nav-item me-2">
+                            <a href="<c:url value='/cart'/>" class="btn btn-outline-light btn-sm position-relative">
+                                <i class="bi bi-cart3 me-1"></i>Giỏ hàng
+                                <span class="badge bg-danger rounded-pill ms-1">
+                                    ${sessionScope.cart != null ? sessionScope.cart.size() : 0}
+                                </span>
+                            </a>
+                        </li>
+
                         <c:choose>
                             <c:when test="${sessionScope.account != null}">
                                 <li class="nav-item dropdown">
@@ -76,6 +86,12 @@
                                         <i class="bi bi-person-circle me-1 text-warning"></i>Xin chào, ${sessionScope.account.fullname}
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end shadow">
+                                        <li>
+                                            <a class="dropdown-item" href="<c:url value='/orders'/>">
+                                                <i class="bi bi-clock-history me-2 text-primary"></i>Đơn mua của tôi
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
                                         <c:if test="${sessionScope.account.isAdmin == true || sessionScope.account.admin == true}">
                                             <li>
                                                 <a class="dropdown-item" href="<c:url value='/admin/books'/>">

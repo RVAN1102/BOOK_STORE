@@ -64,12 +64,36 @@
                                 <span class="text-muted ms-2 small">(${reviewCount} lượt đánh giá)</span>
                             </div>
 
-                            <!-- Giá bán -->
+                            <!-- Giá bán & Thêm vào giỏ -->
                             <div class="p-3 bg-light rounded mb-3">
                                 <span class="text-muted small d-block">Giá bìa:</span>
-                                <span class="fs-3 fw-bold text-danger">
-                                    <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="VNĐ" maxFractionDigits="0"/>
-                                </span>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="fs-3 fw-bold text-danger">
+                                        <fmt:formatNumber value="${book.price}" type="currency" currencySymbol="VNĐ" maxFractionDigits="0"/>
+                                    </span>
+                                    <span class="badge ${book.quantity > 0 ? 'bg-success' : 'bg-danger'}">
+                                        ${book.quantity > 0 ? 'Còn hàng' : 'Hết hàng'}
+                                    </span>
+                                </div>
+                                <c:choose>
+                                    <c:when test="${book.quantity > 0}">
+                                        <form action="<c:url value='/cart/add'/>" method="post" class="d-flex align-items-center mt-2">
+                                            <input type="hidden" name="bookId" value="${book.bookid}"/>
+                                            <div class="input-group me-2" style="max-width: 120px;">
+                                                <span class="input-group-text bg-white">SL</span>
+                                                <input type="number" name="quantity" value="1" min="1" max="${book.quantity}" class="form-control text-center" required/>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary flex-grow-1 fw-bold">
+                                                <i class="bi bi-cart-plus-fill me-1"></i>Thêm vào giỏ
+                                            </button>
+                                        </form>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <button class="btn btn-secondary w-100 disabled" disabled>
+                                            <i class="bi bi-x-circle me-1"></i>Sản phẩm tạm hết hàng
+                                        </button>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
 
                             <ul class="list-group list-group-flush mb-3 small">

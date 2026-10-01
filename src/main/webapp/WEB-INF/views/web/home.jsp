@@ -80,10 +80,18 @@
                                     </span>
                                 </div>
 
-                                <a href="<c:url value='/book/detail?id=${book.bookid}'/>" 
-                                   class="btn btn-outline-primary btn-sm mt-3 w-100 fw-semibold">
-                                    <i class="bi bi-info-circle me-1"></i>Xem Chi Tiết & Đánh Giá
-                                </a>
+                                <div class="d-flex gap-2 mt-3">
+                                    <a href="<c:url value='/book/detail?id=${book.bookid}'/>" 
+                                       class="btn btn-outline-primary btn-sm flex-grow-1 fw-semibold">
+                                        <i class="bi bi-info-circle me-1"></i>Chi Tiết
+                                    </a>
+                                    <c:if test="${book.quantity > 0}">
+                                        <a href="<c:url value='/cart/add?bookId=${book.bookid}&quantity=1'/>" 
+                                           class="btn btn-primary btn-sm fw-semibold" title="Thêm vào giỏ">
+                                            <i class="bi bi-cart-plus"></i>
+                                        </a>
+                                    </c:if>
+                                </div>
                             </div>
                         </div>
                     </div>
