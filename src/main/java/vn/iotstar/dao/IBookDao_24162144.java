@@ -1,5 +1,7 @@
 package vn.iotstar.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 import vn.iotstar.model.Book_24162144;
 
@@ -11,4 +13,6 @@ public interface IBookDao_24162144 {
     void insert(Book_24162144 book, int authorId);
     void update(Book_24162144 book, int authorId);
     void delete(int bookId);
+    boolean deductStock(Connection conn, int bookId, int quantity) throws SQLException;
+    boolean restoreStock(Connection conn, int bookId, int quantity) throws SQLException;
 }

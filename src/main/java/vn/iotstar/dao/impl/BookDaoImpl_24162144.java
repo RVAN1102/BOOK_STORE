@@ -3,6 +3,7 @@ package vn.iotstar.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -214,6 +215,27 @@ public class BookDaoImpl_24162144 extends DBConnection implements IBookDao_24162
             conn.commit();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean deductStock(Connection conn, int bookId, int quantity) throws SQLException {
+        String sql = "UPDATE dbo.books SET quantity = quantity - ? WHERE bookid = ? AND quantity >= ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, quantity);
+            ps.setInt(2, bookId);
+            ps.setInt(3, quantity);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    @Override
+    public boolean restoreStock(Connection conn, int bookId, int quantity) throws SQLException {
+        String sql = "UPDATE dbo.books SET quantity = quantity + ? WHERE bookid = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, quantity);
+            ps.setInt(2, bookId);
+            return ps.executeUpdate() > 0;
         }
     }
 
